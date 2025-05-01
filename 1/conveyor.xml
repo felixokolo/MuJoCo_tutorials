@@ -1,0 +1,61 @@
+<mujoco>
+    <worldbody>
+        <body>
+            <geom type="plane" size="2 2 0.01" />
+        </body>
+    </worldbody>
+
+    <worldbody>
+        <body name="roller1" euler="90 0 0" pos="1 0 0.1" >
+            <geom type="cylinder" size="0.05 0.3" rgba="0 0 1 1" />
+            <joint name="roller1_joint" type="hinge" damping="0.01" />
+            <geom type="box" size="0.06 0.06 0.001" pos="0 0 0.301" />
+            <site name="site1" type="sphere" rgba="1 0 0 1" size="0.01" pos="0 0.05 0" />
+        </body>
+
+        <body name="roller2" euler="90 0 0" pos="-1 0 0.1" >
+            <geom type="cylinder" size="0.05 0.3" rgba="0 0 1 1" />
+            <joint name="roller2_joint" type="hinge" damping="0.01" />
+            <geom type="box" size="0.06 0.06 0.001" pos="0 0 0.301" />
+        </body>
+
+        <body name="belt" pos="0 0 0.17" >
+            <geom type="box" size="1 0.25 0.01" rgba="0 0 0 1" friction="0.001 0.005 0.001" />
+            <site name="belt_motion_touch_sensor_site" type="box" size="1 0.25 0.01" rgba="0 0 0 0" />
+
+            <body name="right_light_sensor" pos="0.65 0 0.03">
+                <geom type="cylinder" size="0.005 0.25" euler="90 0 0" rgba="1 1 0 1" contype="0" conaffinity="0" />
+            </body>
+
+            <body name="left_light_sensor" pos="-0.65 0 0.03">
+                <geom type="cylinder" size="0.005 0.25" euler="90 0 0" rgba="1 1 0 1" contype="0" conaffinity="0" />
+            </body>
+        </body>
+
+    </worldbody>
+
+    <worldbody>
+        <body name="box" pos="0 0 1">
+            <geom type="box" size="0.05 0.05 0.05" rgba="1 0 0 1" friction="0.001 0.005 0.001" mass="0.1" />
+            <joint name="box_joint" type="free" damping="0.1" />
+            <site name="box_site" type="box" size="0.05 0.05 0.05" rgba="1 0 0 1" />
+        </body>
+    </worldbody>
+
+    <equality>
+        <joint joint1="roller1_joint" joint2="roller2_joint" />
+    </equality>
+
+    <actuator>
+        <velocity name="roller_vel" joint="roller1_joint" ctrlrange="-20 20" />
+        <velocity name="box_vel" joint="box_joint" gear="1 0 0 0 0 0" ctrlrange="-20 20" />
+    </actuator>
+
+    <sensor>
+        <velocimeter site="site1" />
+        <touch site="belt_motion_touch_sensor_site"/>
+        <normal body1="right_light_sensor" body2="box"  />
+        <normal body1="left_light_sensor" body2="box"  />
+    </sensor>
+
+</mujoco>
