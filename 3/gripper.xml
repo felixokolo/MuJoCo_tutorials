@@ -1,0 +1,218 @@
+<mujoco>
+    <compiler meshdir="meshes" />
+
+    <default>
+        <mesh scale="0.001 0.001 0.001" />
+
+        <default class="idol">
+            <geom pos="-0.040 0 -0.003" euler="90 -1 0" rgba="0 0 1 1" mass="0" />
+        </default>
+
+        <default class="servo">
+            <geom pos="-0.040 0 -0.003" euler="90 0 0" rgba="0 0 1 1" mass="0" />
+        </default>
+
+        <default class="left_gripper">
+            <geom  pos="-0.01002 -0.01299 -0.009" euler="90 0 0" mass="0.1" />
+        </default>
+
+        <default class="right_gripper">
+            <geom  pos="-0.01002 0.01299 0.009" euler="-90 0 0" mass="0.1" />
+        </default>
+
+    </default>
+
+    <asset>
+
+        <!-- Gears -->
+
+        <!-- Idle gear -->
+        <mesh name="idle_gear" file="gears/idol/Idol_Gear_B.STL" />
+
+        <mesh name="idle_gear_collision" file="gears/idol/collisions/Idol_Gear_B_collision.STL" />
+        <mesh name="idle_gear_collision_t1" file="gears/idol/collisions/Idol_Gear_B_collision_t1.STL" />
+        <mesh name="idle_gear_collision_t2" file="gears/idol/collisions/Idol_Gear_B_collision_t2.STL" />
+        <mesh name="idle_gear_collision_t3" file="gears/idol/collisions/Idol_Gear_B_collision_t3.STL" />
+        <mesh name="idle_gear_collision_t4" file="gears/idol/collisions/Idol_Gear_B_collision_t4.STL" />
+        <mesh name="idle_gear_collision_t5" file="gears/idol/collisions/Idol_Gear_B_collision_t5.STL" />
+        <mesh name="idle_gear_collision_t6" file="gears/idol/collisions/Idol_Gear_B_collision_t6.STL" />
+        <mesh name="idle_gear_collision_t7" file="gears/idol/collisions/Idol_Gear_B_collision_t7.STL" />
+        <mesh name="idle_gear_collision_t8" file="gears/idol/collisions/Idol_Gear_B_collision_t8.STL" />
+        <mesh name="idle_gear_collision_t9" file="gears/idol/collisions/Idol_Gear_B_collision_t9.STL" />
+        <mesh name="idle_gear_collision_t10" file="gears/idol/collisions/Idol_Gear_B_collision_t10.STL" />
+
+        <!-- Servo gear -->
+        <mesh name="servo_gear" file="gears/servo/Servo_Gear_B.STL" />
+
+        <mesh name="servo_gear_collision" file="gears/servo/collisions/Servo_Gear_B_collision.STL" />
+        <mesh name="servo_gear_collision_t1" file="gears/servo/collisions/Servo_Gear_B_collision_t1.STL" />
+        <mesh name="servo_gear_collision_t2" file="gears/servo/collisions/Servo_Gear_B_collision_t2.STL" />
+        <mesh name="servo_gear_collision_t3" file="gears/servo/collisions/Servo_Gear_B_collision_t3.STL" />
+        <mesh name="servo_gear_collision_t4" file="gears/servo/collisions/Servo_Gear_B_collision_t4.STL" />
+        <mesh name="servo_gear_collision_t5" file="gears/servo/collisions/Servo_Gear_B_collision_t5.STL" />
+        <mesh name="servo_gear_collision_t6" file="gears/servo/collisions/Servo_Gear_B_collision_t6.STL" />
+        <mesh name="servo_gear_collision_t7" file="gears/servo/collisions/Servo_Gear_B_collision_t7.STL" />
+        <mesh name="servo_gear_collision_t8" file="gears/servo/collisions/Servo_Gear_B_collision_t8.STL" />
+
+        <!-- Pivot Mesh -->
+        <mesh name="pivot_arm" file="pivot/Pivot Arm B.STL" />
+
+        <!-- Grippers -->
+        <mesh name="gripper_left" file="grippers/Gripper Left B.STL" />
+
+        <mesh name="gripper_left_collision_1" file="grippers/collisions/Gripper Left B collision 1.STL" />
+        <mesh name="gripper_left_collision_2" file="grippers/collisions/Gripper Left B collision 2.STL" />
+        <mesh name="gripper_left_collision_3" file="grippers/collisions/Gripper Left B collision 3.STL" />
+
+        <!-- Cover plates -->
+        <mesh name="bottom_plate" file="plates/Bottom Plate C.STL" />
+        <mesh name="top_plate" file="plates/Top_Plate_C.STL" />
+        
+    </asset>
+
+    <!-- Floor -->
+     
+    <worldbody>
+        <body>
+            <geom type="plane" size="1 1 0.001" />
+        </body>
+    </worldbody>
+
+    <worldbody>
+        <body name="gripper">
+
+            <!--  -->
+
+            <body pos="-0.0004 -0.0135 0.009" euler="0 0 50" >
+
+                <!-- ADD IDLE GEAR AND DISABLE COLLISION -->
+                <geom type="mesh" class="idol" mass="0.1" mesh="idle_gear" contype="0" conaffinity="0" />
+
+                <geom type="mesh" class="idol" mass="0" mesh="idle_gear_collision" />
+                <geom type="mesh" class="idol" mass="0" mesh="idle_gear_collision_t1" />
+                <geom type="mesh" class="idol" mass="0" mesh="idle_gear_collision_t2" />
+                <geom type="mesh" class="idol" mass="0" mesh="idle_gear_collision_t3" />
+                <geom type="mesh" class="idol" mass="0" mesh="idle_gear_collision_t4" />
+                <geom type="mesh" class="idol" mass="0" mesh="idle_gear_collision_t5" />
+                <geom type="mesh" class="idol" mass="0" mesh="idle_gear_collision_t6" />
+                <geom type="mesh" class="idol" mass="0" mesh="idle_gear_collision_t7" />
+                <geom type="mesh" class="idol" mass="0" mesh="idle_gear_collision_t8" />
+                <geom type="mesh" class="idol" mass="0" mesh="idle_gear_collision_t9" />
+                <geom type="mesh" class="idol" mass="0" mesh="idle_gear_collision_t10" />
+
+                <joint name="idol_gear" pos="0 0 0" damping="0.01" />
+
+                <!-- ADD SITE AT PIVOT POINT -->
+                <site name="gear_left_site" pos="-0.04 0 0" type="sphere" size="0.001" />
+                
+            </body>
+
+            <body pos="-0.02 -0.007 0.009" >
+                <joint />
+                <geom type="mesh" mesh="pivot_arm"  mass="0.1" pos="0 0 0.003" euler="90 0 180" rgba="1 0 0 1" contype="0" conaffinity="0" />
+
+                <!-- ADD SITE AT PIVOT POINT -->
+                <site name="pivot_left_site" pos="-0.04 0 0" type="sphere" size="0.001" />
+            
+            </body>
+
+            <body pos="-0.05 -0.05 0.016" euler="0 0 180">
+                
+                <!-- ADD THE GRIPPER AND DISABLE COLLISION -->
+                <geom type="mesh" mesh="gripper_left" rgba="0 0 0 1" class="left_gripper" contype="0" conaffinity="0"  />
+
+                <!-- ADD GRIPPER COLLISIONS -->
+                <geom type="mesh" mesh="gripper_left_collision_1" class="left_gripper" />
+                <geom type="mesh" mesh="gripper_left_collision_2" class="left_gripper" />
+                <geom type="mesh" mesh="gripper_left_collision_3" class="left_gripper" />
+
+                <!-- ADD SLIDING JOINTS IN THE 3 CARTESIAN DIRECTIONS -->
+                <joint type="slide" axis="1 0 0" />
+                <joint type="slide" axis="0 1 0" />
+                <joint type="slide" axis="0 0 1" />
+
+                <!-- A FREE JOINT COULD BE USED BUT ONLY ON THE FIRST LAYER -->
+                <!-- <joint type="free" /> -->
+
+                <!-- ADD SITES AT THE 2 PIVOT POINTS -->
+                <site name="gripper_left_site" type="sphere" size="0.001" />
+                <site name="gripper_left_site2" type="sphere" size="0.001" pos="0.020 -0.007 0" />
+
+            </body>
+            
+            <body  pos="0 0.014 0.009" euler="0 0 -45" >
+
+                <geom type="mesh" class="servo" mass="0.1" mesh="servo_gear" contype="0" conaffinity="0" />
+
+                <geom type="mesh" class="servo" mass="0" mesh="servo_gear_collision" />
+                <geom type="mesh" class="servo" mass="0" mesh="servo_gear_collision_t1" />
+                <geom type="mesh" class="servo" mass="0" mesh="servo_gear_collision_t2" />
+                <geom type="mesh" class="servo" mass="0" mesh="servo_gear_collision_t3" />
+                <geom type="mesh" class="servo" mass="0" mesh="servo_gear_collision_t4" />
+                <geom type="mesh" class="servo" mass="0" mesh="servo_gear_collision_t5" />
+                <geom type="mesh" class="servo" mass="0" mesh="servo_gear_collision_t6" />
+                <geom type="mesh" class="servo" mass="0" mesh="servo_gear_collision_t7" />
+                <geom type="mesh" class="servo" mass="0" mesh="servo_gear_collision_t8" />
+
+                <joint name="servo_gear" pos="0 0 0" damping="0.01" range="-40 40" />
+
+                <site name="gear_right_site" pos="-0.04 0 0" type="sphere" size="0.001" />
+
+            </body>
+
+            <body pos="-0.02 0.007 0.009" >
+                <joint />
+
+                <geom type="mesh" mesh="pivot_arm" pos="0 0 0.003" mass="0.1"  euler="90 0 180" rgba="1 0 0 1" contype="0" conaffinity="0" />
+
+                <site name="pivot_right_site" pos="-0.04 0 0" type="sphere" size="0.001" />
+            </body>
+
+            <body pos="-0.05 0.05 0.016" euler="0 0 180">
+
+                <geom type="mesh" mesh="gripper_left" rgba="0 0 0 1" class="right_gripper"  contype="0" conaffinity="0" />
+
+                <geom type="mesh" mesh="gripper_left_collision_1" class="right_gripper" />
+                <geom type="mesh" mesh="gripper_left_collision_2" class="right_gripper" />
+                <geom type="mesh" mesh="gripper_left_collision_3" class="right_gripper" />
+
+                <joint type="slide" axis="1 0 0" />
+                <joint type="slide" axis="0 1 0" />
+                <joint type="slide" axis="0 0 1" />
+
+                <site name="gripper_right_site" type="sphere" size="0.001" />
+                <site name="gripper_right_site2" type="sphere" size="0.001" pos="0.020 0.007 0" />
+
+            </body>
+
+            <body pos="0 0 0.0055">
+                <geom type="mesh" mesh="bottom_plate" pos="-0.025 -0.030 0" euler="180 -90 -90" rgba="0 0 0 1" />
+            </body>
+
+            <body pos="0 0 0.0125">
+                <geom type="mesh" mesh="top_plate" pos="-0.025 0.030 0" euler="0 -90 -90" rgba="0 0 0 1" />
+            </body>
+
+        </body>
+
+    </worldbody>
+
+    <worldbody>
+       <body pos="-0.08 0 0">
+            <joint type="free" />
+            <geom type="box" size="0.005 0.005 0.005" mass="0.1" rgba="0 1 0 1" />
+       </body>
+    </worldbody>
+
+    <equality>
+        <connect site1="gear_left_site" site2="gripper_left_site" />
+        <connect site1="pivot_left_site" site2="gripper_left_site2" />
+        <connect site1="gear_right_site" site2="gripper_right_site" />
+        <connect site1="pivot_right_site" site2="gripper_right_site2" />
+    </equality>
+
+    <actuator>
+        <motor joint="servo_gear" />
+    </actuator>
+
+</mujoco>
