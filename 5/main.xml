@@ -1,0 +1,90 @@
+<mujoco model="Robot Arm">
+
+
+    <default>
+        <default class="joint" >
+            <joint damping="1" />
+        </default>
+
+    </default>
+
+    <visual>
+        <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0" />
+        <rgba haze="0.15 0.25 0.35 1" />
+        <global azimuth="-130" elevation="-60" />
+    </visual>
+
+    <asset>
+        <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="1 1 1" width="512"
+            height="3072" />
+        <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4"
+            rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300" />
+        <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5"
+            reflectance="0.2" />
+    </asset>
+
+    <asset>
+        <model name="Base" file="models/Base.xml" />
+        <model name="Hip" file="models/Hip.xml" />
+        <model name="Hindarm" file="models/Hindarm.xml" />
+        <model name="Forearm" file="models/Forearm.xml" />
+        <model name="Wrist" file="models/Wrist.xml" />
+        <model name="Hand" file="models/Hand.xml" />
+        <model name="Gripper" file="models/Gripper.xml" />
+    </asset>
+
+    <worldbody>
+        <light pos="0 0 1.5" dir="0 0 -1" directional="true" />
+        <geom name="floor" size="0 0 0.05" type="plane" material="groundplane" />
+    </worldbody>
+
+    <worldbody>
+        <body pos="0 0 0.080">
+            <attach model="Base" body="Base" prefix="base_" />
+            <body pos="0 0 0.065">
+                <attach model="Hip" body="Hip" prefix="hip_" />
+                <joint class="joint" name="joint_hip" />
+
+                <body pos="0 0 0.1655" euler="-90 0 -90">
+                    <attach model="Hindarm" body="Hindarm" prefix="hindarm_" />
+                    <joint class="joint" name="joint_hindarm" />
+
+                    <body pos="0.22112 0 0" euler="0 0 0">
+                        <attach model="Forearm" body="Forearm" prefix="forearm_" />
+                        <joint class="joint" name="joint_forearm" />
+
+                        <body pos="0.1275 0 0" euler="0 90 90">
+                            <attach model="Wrist" body="Wrist" prefix="wrist_" />
+                            <joint class="joint" name="joint_wrist" />
+
+                                <body pos="0 0 0.095" euler="-90 0 -90">
+                                    <attach model="Hand" body="Hand" prefix="hand_" />
+                                    <joint class="joint" name="joint_hand" />
+
+                                    <body pos="0.041 0 0" euler="0 0 0">
+                                        <attach model="Gripper" body="Gripper" prefix="gripper_" />
+
+                                    </body>
+                                </body>
+                            
+                        </body>
+
+                        
+                    </body>
+                </body>
+            </body>
+        </body>
+        
+        
+        
+    </worldbody>
+
+
+    <actuator>
+        <position joint="joint_hip" name="hip_ctrl" kp="20" kv="0.0" />
+        <position joint="joint_hindarm" name="hindarm_ctrl" kp="70" kv="1" />
+        <position joint="joint_forearm" name="forearm_ctrl" kp="50" kv="0" />
+        <position joint="joint_wrist" name="wrist_ctrl" kp="30" kv="0.0" />
+        <position joint="joint_hand" name="hand_ctrl" kp="30" kv="0.0" />
+    </actuator>
+</mujoco>

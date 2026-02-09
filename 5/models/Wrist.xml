@@ -1,0 +1,27 @@
+<mujoco>
+    <compiler meshdir="../meshes/Wrist" />
+
+    <include file="materials.xml" />
+
+    <default>
+        
+        <default class="visual">
+            <geom pos="0.02743 -0.105 -0.01342" euler="90 180 0" />
+        </default>
+    </default>
+
+
+    <asset>
+        <mesh name="Wrist_body_visual" file="Wrist_arm.STL" />
+        <mesh name="Wrist_motor_visual" file="Wrist_motor.STL" />
+        <mesh name="Wrist_attachments_visual" file="Wrist_attachments.STL" />
+    </asset>
+
+    <worldbody>
+        <body name="Wrist">
+            <geom type="mesh" mesh="Wrist_body_visual" class="visual" material="black" mass="0.1" />
+            <geom type="mesh" mesh="Wrist_motor_visual" class="visual" material="silver" mass="0.5" />
+            <geom type="mesh" mesh="Wrist_attachments_visual" class="visual" material="blue" mass="0.01" />
+        </body>
+    </worldbody>
+</mujoco>

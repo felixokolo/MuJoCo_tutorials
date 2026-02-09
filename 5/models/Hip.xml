@@ -1,0 +1,30 @@
+<mujoco>
+    <compiler meshdir="../meshes/Hip" />
+
+    <include file="materials.xml" />
+    
+    <default>
+        
+        <default class="visual">
+            <geom pos="-0.17077 -0.02583 0.00861" euler="0 90 90" /> 
+        </default>
+    </default>
+
+    
+
+    <asset>
+        <mesh name="Hip_body_visual" file="Hip_body.STL" />
+        <mesh name="Hip_motors_ends_visual" file="Hip_motors_ends.STL" />
+        <mesh name="Hip_motors_mid_visual" file="Hip_motors_mid.STL" />
+        <mesh name="Hip_attachments_visual" file="Hip_attachments.STL" />
+    </asset>
+
+    <worldbody>
+        <body name="Hip">
+            <geom type="mesh" mesh="Hip_body_visual" class="visual" material="black" mass="0.1" />
+            <geom type="mesh" mesh="Hip_motors_ends_visual" class="visual" material="silver" mass="0.25" />
+            <geom type="mesh" mesh="Hip_motors_mid_visual" class="visual" material="deep_black" mass="0.25" />
+            <geom type="mesh" mesh="Hip_attachments_visual" class="visual" material="blue" mass="0.01" />
+        </body>
+    </worldbody>
+</mujoco>

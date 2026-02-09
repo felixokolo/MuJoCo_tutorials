@@ -1,0 +1,29 @@
+<mujoco>
+    <compiler meshdir="../meshes/Hindarm" />
+
+    <include file="materials.xml" />
+    
+    <default>
+        
+        <default class="visual">
+            <geom pos="0.13852 0 0.002" euler="90 -90 0" />
+        </default>
+    </default>
+
+
+    <asset>
+        <mesh name="Hindarm_body_visual" file="Hindarm_arm.STL" />
+        <mesh name="Hindarm_motor_visual" file="Hindarm_motor.STL" />
+        <mesh name="Hindarm_pulley_visual" file="Hindarm_pulley.STL" />
+        <mesh name="Hindarm_attachments_visual" file="Hindarm_attachments.STL" />
+    </asset>
+
+    <worldbody>
+        <body name="Hindarm">
+            <geom type="mesh" mesh="Hindarm_body_visual" class="visual" material="black" mass="0.1" />
+            <geom type="mesh" mesh="Hindarm_motor_visual" class="visual" material="silver" mass="0.5" />
+            <geom type="mesh" mesh="Hindarm_pulley_visual" class="visual" material="silver" mass="0.01" />
+            <geom type="mesh" mesh="Hindarm_attachments_visual" class="visual" material="blue" mass="0.01" />
+        </body>
+    </worldbody>
+</mujoco>

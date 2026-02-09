@@ -1,0 +1,29 @@
+<mujoco>
+    <compiler meshdir="../meshes/Base" />
+
+    <include file="materials.xml" />
+
+    <default>
+        <default class="visual">
+            <geom pos="-0.19477 0 -0.018" euler="0 90 90" />
+        </default>
+    </default>
+
+    
+
+    <asset>
+        <mesh name="Base_motor_visual" file="Base_motor.STL" />
+        <mesh name="Base_plastic_visual" file="Base_plastic.STL" />
+        <mesh name="Base_stand_visual" file="Base_stand.STL" />
+        <mesh name="Base_wood_visual" file="Base_wood.STL" />
+    </asset>
+
+    <worldbody>
+        <body name="Base">
+            <geom type="mesh" mesh="Base_wood_visual" class="visual" material="brown" />
+            <geom type="mesh" mesh="Base_plastic_visual" class="visual" material="black" mass="0.1" />
+            <geom type="mesh" mesh="Base_motor_visual" class="visual" material="silver" />
+            <geom type="mesh" mesh="Base_stand_visual" class="visual" material="deep_black" />
+        </body>
+    </worldbody>
+</mujoco>

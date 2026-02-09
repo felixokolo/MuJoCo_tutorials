@@ -1,0 +1,22 @@
+<mujoco>
+    <compiler meshdir="../meshes/Forearm" />
+
+    <include file="materials.xml" />
+
+    <default>
+        
+        <default class="visual">
+            <geom pos="0.23058 -0.16602 0.07258" euler="-90 0 180" />
+        </default>
+    </default>
+
+    <asset>
+        <mesh name="Forearm_body_visual" file="Forearm_arm.STL" />
+    </asset>
+
+    <worldbody>
+        <body name="Forearm">
+            <geom type="mesh" mesh="Forearm_body_visual" class="visual" material="black" mass="0.1" />
+        </body>
+    </worldbody>
+</mujoco>

@@ -1,0 +1,24 @@
+<mujoco>
+    <compiler meshdir="../meshes/Hand" />
+
+    <include file="materials.xml" />
+
+    <default>
+        
+        <default class="visual">
+            <geom pos="0.06206 -0.00475 -0.05992" euler="90 -90 0" />
+        </default>
+    </default>
+
+    
+
+    <asset>
+        <mesh name="Hand_body_visual" file="Hand_arm.STL" />
+    </asset>
+
+    <worldbody>
+        <body name="Hand">
+            <geom type="mesh" mesh="Hand_body_visual" class="visual" material="black" mass="0.1" />
+        </body>
+    </worldbody>
+</mujoco>
